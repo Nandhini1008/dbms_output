@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Order List</title>
+    <link rel="stylesheet" href="styles.css">
     <script>
         function approveOrder(orderId) {
             fetch(`/approve_order/${orderId}`, { method: 'POST' })
