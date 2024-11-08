@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All Orders</title>
+</head>
+<body>
+    <h1>Orders:</h1>
+    <table>
+        <tr>
+            <th>Order ID</th>
+            <th>Equipment Name</th>
+            <th>Quantity Ordered</th>
+            <th>Order Date</th>
+            <th>Room Requested</th>
+            <th>Approval Status</th>
+        </tr>
+        {% for order in orders %}
+        <tr>
+            <td>{{ order[0] }}</td>
+            <td>{{ order[1] }}</td>
+            <td>{{ order[2] }}</td>
+            <td>{{ order[3] }}</td>
+            <td>{{ order[4] }}</td>
+            <td>{{ order[5] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!-- view_orders.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Order List</title>
+    <script>
+        function approveOrder(orderId) {
+            fetch(`/approve_order/${orderId}`, { method: 'POST' })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert("Sent the details to warehouse");
+                        document.getElementById(`order-row-${orderId}`).remove();
+                    } else {
+                        alert("Failed to approve order");
+                    }
+                });
+        }
+        function rejectOrder(orderId) {
+            fetch(`/reject_order/${orderId}`, { method: 'POST' })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert("Order rejected");
+                        document.getElementById(`order-row-${orderId}`).remove();
+                    } else {
+                        alert("Failed to reject order");
+                    }
+                });
+        }
+    </script>
+</head>
+<body>
+    <h1>Pending Orders</h1>
+    <table>
+        <tr>
+            <th>Order ID</th>
+            <th>Equipment Name</th>
+            <th>Quantity Ordered</th>
+            <th>Order Date</th>
+            <th>Room Requested</th>
+            <th>Requested By</th>
+            <th>Approval Status</th>
+            <th>Action</th>
+        </tr>
+        {% for order in orders %}
+        <tr id="order-row-{{ order.order_id }}">
+            <td>{{ order.order_id }}</td>
+            <td>{{ order.equipment_name }}</td>
+            <td>{{ order.quantity_ordered }}</td>
+            <td>{{ order.order_date }}</td>
+            <td>{{ order.room_requested }}</td>
+            <td>{{ order.requested_by }}</td>
+            <td>{{ order.approval_status }}</td>
+            <td>
+                <button onclick="approveOrder({{ order.order_id }})">Approve</button>
+                <button onclick="rejectOrder({{ order.order_id }})">Reject</button>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    <button onclick="location.href='/manager/orders'">View All Orders</button>
+    <button onclick="location.href='/manager/orders_to_place'">View Orders to Place</button>
+
+</body>
+</html>

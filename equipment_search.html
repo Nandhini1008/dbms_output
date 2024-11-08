@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Equipment Search</title>
+</head>
+<body>
+    <form action="/equipment_search" method="POST" id="search-form">
+        <input type="text" id="search-name" name="search_name" placeholder="Search by equipment name" required>
+        <button type="submit">Search</button>
+    </form>
+
+    {% if equipment %}
+        <h2>Search Results:</h2>
+        <ul>
+        {% for item in equipment %}
+            <li>
+                <p><strong>ID:</strong> {{ item[0] }}</p>
+                <p><strong>Name:</strong> {{ item[1] }}</p>
+                <form action="/request_usage" method="POST">
+                    <input type="hidden" name="equipment_id" value="{{ item[0] }}">
+                    <input type="text" name="room_requested" placeholder="Room/Patient ID" required>
+                    <button type="submit">Request Usage</button>
+                </form>
+            </li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+
+    <div id="search-results"></div>
+</body>
+</html>
