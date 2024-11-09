@@ -3,19 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <title>Orders to be Placed</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="order.css">
 </head>
 <body>
     <h1>Orders to be Placed</h1>
+    
     {% for order in orders %}
-    <p><strong>Order ID:</strong> {{ order[0] }}</p>
-    <p><strong>Order Date:</strong> {{ order[1] }}</p>
-    <p><strong>Recommended Dealer:</strong> {{ order[2] }}</p>
-    <p><strong>Dealer Contact:</strong> {{ order[3] }}</p>
-    <p><strong>Dealer Address:</strong> {{ order[4] }}</p>
-    <p><strong>Equipment Name:</strong> {{ order[5] }}</p>
-    <br><hr>
-{% endfor %}
-
+    <div class="order-container">
+        <p><strong>Order ID:</strong> {{ order[0] }}</p>
+        <p><strong>Order Date:</strong> {{ order[1] }}</p>
+        <p><strong>Recommended Dealer:</strong> {{ order[2] }}</p>
+        <p><strong>Dealer Contact:</strong> {{ order[3] }}</p>
+        <p><strong>Dealer Address:</strong> {{ order[4] }}</p>
+        <p><strong>Equipment Name:</strong> {{ order[5] }}</p>
+    </div>
+    <hr>
+    {% endfor %}
+    
 </body>
 </html>
